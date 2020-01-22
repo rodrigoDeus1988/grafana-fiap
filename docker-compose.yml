@@ -20,7 +20,7 @@ services:
       MYSQL_USER: fiap
       MYSQL_PASSWORD: 123456
       TZ: "America/Bahia"
-      prometheus:
+  prometheus:
     image: prom/prometheus:v2.15.2
     container_name: prometheus
     volumes:
