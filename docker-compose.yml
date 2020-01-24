@@ -21,22 +21,22 @@ services:
       MYSQL_PASSWORD: 123456
       TZ: "America/Bahia"
   prometheus:
-    image: prom/prometheus:v2.15.2
-    container_name: prometheus
+    image: prom/prometheus:v2.1.0
     volumes:
-      - ./prometheus:/etc/prometheus
+      - ./prometheus/:/etc/prometheus/
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
-      - '--web.console.libraries=/etc/prometheus/console_libraries'
-      - '--web.console.templates=/etc/prometheus/consoles'
-      - '--storage.tsdb.retention.time=200h'
-      - '--web.enable-lifecycle'
-    restart: unless-stopped
-    expose:
-      - 9090
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - 9090:9090
+    links:
+      - cadvisor:cadvisor
+      - alertmanager:alertmanager
+    depends_on:
+      - cadvisor
     networks:
-      - monitor-net
-    labels:
-      org.label-schema.group: "monitoring"
+      - back-tier
+    restart: always
