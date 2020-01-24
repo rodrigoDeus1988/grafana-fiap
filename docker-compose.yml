@@ -20,7 +20,3 @@ services:
       MYSQL_USER: fiap
       MYSQL_PASSWORD: 123456
       TZ: "America/Bahia"
-  prometheus:
-    image: prom/prometheus:v2.1.0
-    ports:
-      - 9090:9090
