@@ -1,19 +1,11 @@
-grafana:
+version: "3"
+services:
+  grafana:
     image: grafana/grafana:5.1.0
-#    container_name: grafana
+    environment: 
+     # - GF_SERVER_ROOT_URL=http://localhost
+     # - GF_SECURITY_ADMIN_PASSWORD=123456
+     # - TZ="America/Bahia"
     ports:
       - 3000:3000
-    volumes:
-      - ./entrypoint.sh:/app/entrypoint.sh
-      - ./config/grafana.ini:/etc/grafana/grafana.ini
-      - ./config/dashboards:/var/lib/grafana/dashboards
-      - ./config/datasources:/etc/grafana/datasources
-      - ./config/plugins:/var/lib/grafana/plugins
-      - grafana_data:/var/lib/grafana
-    env_file:
-      - ./config.env
-    networks:
-      - back-tier
-      - front-tier
-#    entrypoint:
-#      - sh /app/entrypoint.sh
+    #user: "104"
