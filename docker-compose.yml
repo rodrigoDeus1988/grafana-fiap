@@ -35,8 +35,6 @@ services:
     links:
       - cadvisor:cadvisor
       - alertmanager:alertmanager
-    depends_on:
-      - cadvisor
     networks:
       - back-tier
     restart: always
