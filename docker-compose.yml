@@ -24,6 +24,3 @@ services:
     image: prom/prometheus:v2.1.0
     ports:
       - 9090:9090
-    networks:
-      - back-tier
-    restart: always
